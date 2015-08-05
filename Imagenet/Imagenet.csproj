@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201508051225440_addLevel.Designer.cs">
       <DependentUpon>201508051225440_addLevel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508051454577_addLineNo.cs" />
+    <Compile Include="Migrations\201508051454577_addLineNo.Designer.cs">
+      <DependentUpon>201508051454577_addLineNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ImgnetContext.cs" />
     <Compile Include="Program.cs" />
@@ -93,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508051225440_addLevel.resx">
       <DependentUpon>201508051225440_addLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508051454577_addLineNo.resx">
+      <DependentUpon>201508051454577_addLineNo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

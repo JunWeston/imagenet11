@@ -1,2 +1,1 @@
-﻿select count(*) from dbo.Synsets
-where Synsets.IsAvailable is not null
+﻿TRUNCATE TABLE dbo.images

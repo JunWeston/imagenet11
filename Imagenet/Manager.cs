@@ -11,7 +11,67 @@ namespace Imagenet
     {
         ImgnetContext db = new ImgnetContext();
         string path = @"D:\Backup\Source\Repos\Imagenet\Imagenet\Imagenet\data\";
+        string imgpath = @"C:\imagenet_fall11_urls.txt";
 
+        private void ProcessLinesOfImgs(List<string> lines)
+        {
+            var imgs = lines.Select(l =>
+            {
+                var split = l.Split(new char[] { '\t', '_' }, 3, StringSplitOptions.RemoveEmptyEntries);
+                if (split.Count() != 3) return new Image { Wnid = "" };
+                return new Image { Wnid = split[0], Index = int.Parse(split[1]), Url = split[2] };
+            }).Where(s => s.Wnid != "").ToList();
+            db.Images.AddRange(imgs);
+            db.SaveChanges();
+        }
+
+        public void AddImgs()
+        {
+            var filename = imgpath;
+            int counter = 0;
+            string line;
+
+            db.Images.RemoveRange(db.Images);
+            db.SaveChanges();
+
+            var lines = new List<string>();
+
+            // Read the file and display it line by line.
+            System.IO.StreamReader file = new System.IO.StreamReader(filename);
+            while ((line = file.ReadLine()) != null)
+            {
+                lines.Add(line);
+                
+                counter++;
+
+                if (counter % 100000 == 0)
+                {
+                    ProcessLinesOfImgs(lines);
+                    lines.Clear();
+                }
+
+            }
+
+            ProcessLinesOfImgs(lines);
+
+            file.Close();
+
+            //string[] lines = System.IO.File.ReadAllLines(filename);
+            //var imgs = lines.Select(l =>
+            //{
+            //    var split = l.Split(new char[] { '\t', '_' }, 2, StringSplitOptions.RemoveEmptyEntries);
+            //    if (split.Count() != 3) return new Image { Wnid = "" };
+            //    return new Image { Wnid = split[0], Index = int.Parse(split[1]), Url = split[2] };
+            //}).Where(s => s.Wnid != "").OrderBy(s => s.Wnid).ToList();
+
+            //db.Images.AddRange(imgs);
+
+            //db.SaveChanges();
+
+            Console.WriteLine("done.");
+            Console.ReadLine();
+
+        }
 
         public void LoadWords()
         {
@@ -36,6 +96,27 @@ namespace Imagenet
             // Suspend the screen.
             Console.ReadLine();
 
+        }
+
+        public int ScanParent()
+        {
+            var c = 0;
+
+            var list = db.Synsets.ToList();
+            foreach (var s in list)
+            {
+                if (s.Parent != null && s.Level != s.Parent.Level + 1)
+                {
+                    s.Level = s.Parent.Level + 1;
+                    c++;
+                }
+            }
+            db.SaveChanges();
+
+            Console.WriteLine(c.ToString() + " lines changed.");
+            Console.WriteLine("done.");
+            Console.ReadLine();
+            return c;
         }
 
         public void ResetLevel()
@@ -158,12 +239,13 @@ namespace Imagenet
                 var split = l.Split(new char[] { '\t' }, 2, StringSplitOptions.RemoveEmptyEntries);
                 if (split.Count() != 2) return new Synset { Wnid = "" };
                 return new Synset { Wnid = split[0], Glosses = split[1] };
-            }).Where(s => s.Wnid != "").OrderBy(s=>s.Wnid).ToList();
+            }).Where(s => s.Wnid != "").OrderBy(s => s.Wnid).ToList();
 
             var synsets = db.Synsets.OrderBy(s => s.Wnid).ToList();
 
             var L = glosses.Count;
-            if (synsets.Count != L) {
+            if (synsets.Count != L)
+            {
                 Console.WriteLine("lines count not match");
                 return;
             }
@@ -199,7 +281,7 @@ namespace Imagenet
                 db.Synsets.AddOrUpdate(s);
                 Console.WriteLine(counter++);
             }
-            
+
             Console.ReadLine();
 
         }

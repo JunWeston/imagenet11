@@ -14,7 +14,7 @@ namespace Imagenet
             Manager m = new Manager();
             //m.BatchLoadWords();
             //m.AddIsAvailable();
-            m.ResetLevel();
+            m.AddImgs();
         }
        
     }

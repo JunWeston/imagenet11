@@ -51,6 +51,7 @@ namespace Imagenet
         [Index, MaxLength(16)]
         public string Wnid { get; set; }
         public int? Index { get; set; }
+        public int? LineNo { get; set; }
         public string Url { get; set; }
 
         [ForeignKey("Wnid")]
