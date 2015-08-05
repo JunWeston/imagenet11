@@ -43,8 +43,12 @@ namespace Imagenet
             var list = db.Synsets.ToList();
             foreach (var s in list)
             {
-                //s.Level = 0;
+                s.Level = 0;
             }
+            db.SaveChanges();
+
+            Console.WriteLine("done.");
+            Console.ReadLine();
         }
 
         public void ClearAndLoadWords()
