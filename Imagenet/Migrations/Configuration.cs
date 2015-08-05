@@ -5,14 +5,14 @@ namespace Imagenet.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Imagenet.Model.ImgnetContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Imagenet.ImgnetContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Imagenet.Model.ImgnetContext context)
+        protected override void Seed(Imagenet.ImgnetContext context)
         {
             //  This method will be called after migrating to the latest version.
 

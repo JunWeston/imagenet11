@@ -1,4 +1,4 @@
-namespace Imagenet.Model
+namespace Imagenet
 {
     using System;
     using System.Collections.Generic;
@@ -38,6 +38,8 @@ namespace Imagenet.Model
         public string ParentId { get; set; }
         [ForeignKey("ParentId")]
         public virtual Synset Parent { get; set; }
+        [InverseProperty("Parent")]
+        public List<Synset> Children { get; set; }
         [InverseProperty("Synset")]
         public List<Image> Images { get; set; }
     }

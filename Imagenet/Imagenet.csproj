@@ -54,9 +54,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Manager.cs" />
     <Compile Include="Migrations\201508051020527_initAdds.cs" />
     <Compile Include="Migrations\201508051020527_initAdds.Designer.cs">
       <DependentUpon>201508051020527_initAdds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508051043119_testChildren.cs" />
+    <Compile Include="Migrations\201508051043119_testChildren.Designer.cs">
+      <DependentUpon>201508051043119_testChildren.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ImgnetContext.cs" />
@@ -78,6 +83,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201508051020527_initAdds.resx">
       <DependentUpon>201508051020527_initAdds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508051043119_testChildren.resx">
+      <DependentUpon>201508051043119_testChildren.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
