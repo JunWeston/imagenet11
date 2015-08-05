@@ -38,6 +38,25 @@ namespace Imagenet
 
         }
 
+        public void ClearAndLoadWords()
+        {
+            db.Synsets.RemoveRange(db.Synsets);
+            db.SaveChanges();
+
+            var filename = path + "words.txt";
+
+            string[] lines = System.IO.File.ReadAllLines(filename);
+            var synsets = lines.Select(l =>
+            {
+                var split = l.Split(new char[] { '\t' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                if (split.Count() != 2) return new Synset { Wnid = "" };
+                return new Synset { Wnid = split[0], Words = split[1] };
+            }).Where(s => s.Wnid != "").ToList();
+
+            db.Synsets.AddRange(synsets);
+            db.SaveChanges();
+        }
+
         public void BatchLoadWords()
         {
             var filename = path + "words.txt";

@@ -13,7 +13,8 @@ namespace Imagenet
         {
             Manager m = new Manager();
             //m.LoadWords();
-            m.BatchLoadWords();
+            //m.BatchLoadWords();
+            m.ClearAndLoadWords();
         }
        
     }
