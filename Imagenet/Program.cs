@@ -12,9 +12,8 @@ namespace Imagenet
         static void Main(string[] args)
         {
             Manager m = new Manager();
-            //m.LoadWords();
             //m.BatchLoadWords();
-            m.ClearAndLoadWords();
+            //m.AddIsAvailable();
         }
        
     }

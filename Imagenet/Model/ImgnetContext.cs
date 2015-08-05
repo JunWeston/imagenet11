@@ -34,6 +34,7 @@ namespace Imagenet
         public string Words { get; set; }
         public string Glosses { get; set; }
         public bool? IsAvailable { get; set; }
+        public int? Level { get; set; }
 
         public string ParentId { get; set; }
         [ForeignKey("ParentId")]
