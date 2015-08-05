@@ -54,6 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201508051020527_initAdds.cs" />
+    <Compile Include="Migrations\201508051020527_initAdds.Designer.cs">
+      <DependentUpon>201508051020527_initAdds.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ImgnetContext.cs" />
     <Compile Include="Program.cs" />
@@ -71,7 +75,11 @@
     <Content Include="data\wordnet.is_a.txt" />
     <Content Include="data\words.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201508051020527_initAdds.resx">
+      <DependentUpon>201508051020527_initAdds.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
